@@ -1,0 +1,531 @@
+/*****************************************************
+*** GENERAL
+*****************************************************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    /* background-image: linear-gradient(rgba(62, 20, 20, 0.4), rgba(62, 20, 20, 0.4), url(back.jpg)); */
+    height: 100vh;
+    background-image: url(/src/Images/diceB.jpg);
+    background-size: contain;
+    background-position: center;
+    font-family: Lato;
+    font-weight: 300;
+    position: relative;
+    color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* THE FLIPPING PAGE STYLING */
+.flip-card {
+    background-color: transparent;
+    width: 1000px;
+    height: 600px;
+    perspective: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
+.flip-card-inner {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.flip {
+    transform: rotateY(-180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 1000px;
+    height: 600px;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    color: black;
+}
+
+.flip-card-back {
+    background-color: white;
+    color: black;
+    transform: rotateY(180deg);
+    border: 4px solid #a00;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: circle;
+    padding-left: 50px;
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+
+.rules {
+    width: 85%;
+    margin: 1% auto;
+    text-align: justify;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.gameRules {
+    color: white;
+    text-decoration: underline;
+    background: #a00;
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    width: 150px;
+    height: 22px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.gameRules:hover {
+    font-weight: 700;
+}
+
+/* FRONT SIDE PAGE GENERAL STYLING */
+.wrapper {
+    width: 1000px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.player-0-panel,
+.player-1-panel {
+    width: 50%;
+    float: left;
+    height: 600px;
+    padding: 100px;
+    background-image: url(/src/Images/jersy.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.player-0-panel,
+.player-1-panel::before {
+    background-color: white !important;
+}
+
+span {
+    font-size: 12px;
+    text-transform: none;
+}
+
+/* PLAYERS PAGE STYLING */
+.player-name {
+    font-size: 25px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 100;
+    margin-top: 90px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.player-score {
+    text-align: center;
+    font-size: 80px;
+    font-weight: 150;
+    color: #a00;
+    margin-bottom: 70px;
+}
+
+.player-current-box {
+    background-color: #EB4D4D;
+    color: #fff;
+    width: 40%;
+    margin: 0 auto;
+    padding: 12px;
+    text-align: center;
+    border: 2px solid #a00;
+
+}
+
+.player-current-label {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #222;
+
+}
+
+.player-current-score {
+    font-size: 30px;
+}
+
+/* THE ACTIVE CLASS STYLING  */
+.active {
+    background-color: rgb(233, 225, 225) !important;
+    font-weight: 400;
+
+}
+
+.active .player-name {
+    font-weight: 400;
+}
+
+.active .player-score {
+    font-weight: 300;
+}
+
+/* THE GREEN ACTIVE DOT */
+.active .player-name::after {
+    content: "\2022";
+    font-size: 47px;
+    position: absolute;
+    color: rgb(77, 235, 117);
+    top: -7px;
+    right: 25px;
+}
+
+/* GAME BUTTONS STYLING */
+button {
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    background: none;
+    border: none;
+    font-family: Lato;
+    font-size: 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.buttonImg {
+    padding-top: 5px;
+    padding-right: 5px;
+}
+
+.helpText {
+    position: absolute;
+    width: 110px;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    background: none;
+    border: none;
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 400;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.newGameHelpText {
+    top: 130px;
+
+}
+
+.rollDiceHelpText {
+    top: 470px;
+
+}
+
+.holdHelpText {
+    top: 520px;
+
+}
+
+.winScoreHelpText {
+    top: 25px;
+}
+
+button:hover {
+    font-weight: 400;
+    text-shadow: 2px 2px 2px #CE5937;
+
+}
+
+.btn-new {
+    top: 100px;
+}
+
+.btn-roll {
+    top: 437px;
+}
+
+.btn-hold {
+    top: 490px;
+}
+
+/* STYLING OF SWITCHES */
+.secondKey,
+.clickKEY {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 30px;
+    width: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    background: none;
+    border: none;
+    font-family: Lato;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 300;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.clickKEY {
+    bottom: 5px;
+}
+
+.switchContainer,
+.switchContainer2 {
+    box-sizing: border-box;
+    width: 60px;
+    height: 20px;
+    border: 2px solid #a00;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    margin: 0;
+    padding: 1px;
+}
+
+.switch,
+.switch2 {
+    width: 26px;
+    height: 14px;
+    background-color: #EB4D4D;
+    transition: transform 1s;
+    transform: translateX(0px);
+
+}
+
+.switchClass {
+    transform: translateX(36px);
+}
+
+/* SET WINNING SCORE CONTAINER */
+.Win {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    transform: translateX(-50%);
+    height: 80px;
+    width: 220px;
+    /* box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10); */
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+#defaultScore {
+    font-size: 12px;
+}
+
+.inputWin {
+    height: 30px;
+    width: 95px;
+    text-align: center;
+}
+
+.winParag {
+    background-color: transparent;
+    text-align: center;
+
+}
+
+/* WINNING PLAYER STYLING */
+.bold {
+    font-weight: 400;
+    transition: 0.3s;
+    transition-delay: 0.3s;
+    text-shadow: 2px 2px 2px #CE5937
+}
+
+.winner {
+    background-color: #f7f7f7;
+}
+
+.winner .player-name {
+    font-weight: 300;
+    color: #EB4D4D;
+}
+
+.winnerClass {
+    background: url(/src/Images/jersy.png), url(/src/Images/UntidySickHairstreak-size_restricted.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* DICE STRUCTURE AND STYLING */
+#view {
+    position: absolute;
+    left: 405px;
+    top: 107px;
+    width: 100px;
+    height: 00px;
+    margin: 50px;
+    perspective: 300px;
+}
+
+#view2 {
+    position: absolute;
+    left: 405px;
+    top: 235px;
+    width: 100px;
+    height: 00px;
+    margin: 50px;
+    perspective: 270px;
+}
+
+#dice,
+#dice2 {
+    display: none;
+    width: 90px;
+    height: 90px;
+    margin-top: 20px;
+    position: relative;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 1s;
+    -webkit-transition: transform 1s;
+
+}
+
+.diceFace {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    text-align: center;
+    line-height: 90px;
+    font-size: 45px;
+    border: 2px solid #a00;
+}
+
+/* DICE FACES */
+#nr1 {
+    background-image: url("/src/Images/dice-1.png");
+    background-position: center;
+    background-size: cover;
+    transform: rotateY(0deg) translateZ(45px);
+    -webkit-transform: rotateY(0deg) translateZ(45px);
+}
+
+#nr2 {
+    background-image: url("/src/Images/dice-2.png");
+    background-position: center;
+    background-size: cover;
+    transform: rotateY(90deg) translateZ(45px);
+    -webkit-transform: rotateY(90deg) translateZ(45px);
+}
+
+#nr3 {
+    background-image: url("/src/Images/dice-3.png");
+    background-position: center;
+    background-size: cover;
+    transform: rotateY(180deg) translateZ(45px);
+    -webkit-transform: rotateY(180deg) translateZ(45px);
+}
+
+#nr4 {
+    background-image: url("/src/Images/dice-4.png");
+    background-position: center;
+    background-size: cover;
+    transform: rotateY(-90deg) translateZ(45px);
+    -webkit-transform: rotateY(-90deg) translateZ(45px);
+}
+
+#nr5 {
+    background-image: url("/src/Images/dice-5.png");
+    background-position: center;
+    background-size: cover;
+    transform: rotateX(90deg) translateZ(45px);
+    -webkit-transform: rotateX(90deg) translateZ(45px);
+}
+
+#nr6 {
+    background-image: url("/src/Images/dice-6.png");
+    background-position: center;
+    background-size: cover;
+    transform: rotateX(-90deg) translateZ(45px);
+    -webkit-transform: rotateX(-90deg) translateZ(45px);
+}
+
+.textBox {
+    width: 200px;
+}
+
+/* ANIMATIONS */
+.pulse {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+@-webkit-keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.2, 1.2, 1.2);
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.2, 1.2, 1.2);
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dice game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/main.css">
+</head>
+
+<body>
+    <!-- THE FLIPPING PAGE STRUCTURE -->
+    <div class="flip-card">
+        <div class="gameRules">Game rules</div>
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <div class="wrapper">
+                    <!-- THE WINNING SCORE INPUT -->
+                    <div class="Win">
+                        <p class="winParag">SET WINNING SCORE</p><input type="text" placeholder="ex: 100"
+                            class="inputWin">
+                        <p class="helpText winScoreHelpText">(default is 50)</p>
+                    </div>
+                    <!-- NEW GAME BUTTON -->
+                    <button class="btn-new"><img class="buttonImg" height="20" src="/src/Images/new.svg" alt="img">NEW
+                        GAME</button>
+                    <p class="helpText newGameHelpText">( or press N key )</p>
+                    <!-- ROLL THE DICE BUTTON -->
+                    <button class="btn-roll"><img class="buttonImg" height="20" src="/src/Images/rollDice.svg" alt="img">Roll
+                        Dice</button>
+                    <p class="helpText rollDiceHelpText">( or press Space key )</p>
+                    <!-- HOLD BUTTON -->
+                    <button class="btn-hold"><img class="buttonImg" height="20" src="/src/Images/hold.svg" alt="img">HOLD</button>
+                    <p class="helpText holdHelpText">( or press S key )</p>
+                    <!-- THE FIRST DICE -->
+                    <div id="view">
+                        <div id="dice">
+                            <div class="diceFace" id="nr1"></div>
+                            <div class="diceFace" id="nr2"></div>
+                            <div class="diceFace" id="nr3"></div>
+                            <div class="diceFace" id="nr4"></div>
+                            <div class="diceFace" id="nr5"></div>
+                            <div class="diceFace" id="nr6"></div>
+                        </div>
+                    </div>
+                    <!-- SECOND DICE -->
+                    <div id="view2">
+                        <div id="dice2">
+                            <div class="diceFace" id="nr1"></div>
+                            <div class="diceFace" id="nr2"></div>
+                            <div class="diceFace" id="nr3"></div>
+                            <div class="diceFace" id="nr4"></div>
+                            <div class="diceFace" id="nr5"></div>
+                            <div class="diceFace" id="nr6"></div>
+                        </div>
+                    </div>
+                    <!-- PLAYER_1 PANEL -->
+                    <div class="player-0-panel active">
+                        <div class="player-name pl-n-1">PLAYER 1</div>
+                        <div class="pl-gsc-1 player-score ">0</div>
+                        <div class="player-current-box">
+                            <div class="player-current-lebel"></div>
+                            <div class="player-current-score pl-sc-1">0</div>
+                        </div>
+                    </div>
+                    <!-- PLAYER_2/COMPUTER PANEL -->
+                    <div class="player-1-panel">
+                        <div class="player-name pl-n-2">PLAYER 2</div>
+                        <div class="pl-gsc-2 player-score ">0</div>
+                        <div class="player-current-box">
+                            <div class="player-current-lebel"></div>
+                            <div class="player-current-score pl-sc-2">0</div>
+                        </div>
+                    </div>
+                    <!-- CLICK/KEY PRESS SWITCH -->
+                    <div class="clickKEY">
+                        <p id="mouse" class="textBox">USE MOUSE TO PLAY</p>
+                        <div class="switchContainer">
+                            <div class="switch"></div>
+                        </div>
+                        <p id="keyboard" class="textBox bold">USE KEYBOARD TO PLAY</p>
+                    </div>
+                    <!-- PLAYER_1 VS PLAYER_2/PLAYER_1 VS COMPUTER SWITCH -->
+                    <div class="secondKey">
+                        <p id="playerGame" class="textBox">PLAYER1_VS_PLAYER2</p>
+                        <div class="switchContainer2">
+                            <div class="switch2"></div>
+                        </div>
+                        <p id="computerGame" class="textBox bold">PLAYER1_VS_COMPUTER</p>
+                    </div>
+                </div>
+            </div>
+            <!-- BACK SIDE WITH GAME RULES -->
+            <div class="flip-card-back">
+                <h1>The Two-Dice Pig (Dice Game)</h1>
+                <div class="rules">
+                    <h3>Game History</h3>
+                    <hr><br>
+                    <p>Pig is a simple dice game first described in print by John Scarne in 1945. As with many games of
+                        folk origin, Pig is played with many rule variations. Pig is commonly used by mathematics
+                        teachers to teach probability
+                        concepts.
+
+                        Pig is one of a family of dice games described by Reiner Knizia as "jeopardy dice games". For
+                        jeopardy dice games, the dominant type of decision is whether or not to jeopardize previous
+                        gains by
+                        rolling for potential greater gains.
+                    </p>
+                </div>
+                <div class="rules">
+                    <h3>Gameplay</h3>
+                    <hr><br>
+                    <ul>
+                        <li>Each turn, a player repeatedly rolls two dices until either a 1 is rolled or the player
+                            decides to "hold".</li>
+
+                        <li>If the first player rolls at least one 1, they score nothing and the turn goes to the second
+                            player.</li>
+                        <li>If neither dice faces shows a 1, the dice score is added to their turn total and the
+                            player's turn
+                            continues.</li>
+                        <li>If two 1s are rolled, the player’s entire score is lost, and the turn ends.</li>
+                        <li>If a player chooses to "hold", their turn total is added to their final score, and it
+                            becomes
+                            the next
+                            player's turn.</li>
+                        <li>The first player to score more points then the set Winning Limit, wins.</li>
+                    </ul>
+                    <p>
+                        For example, the first player, Donald, begins a turn with a roll of 5 and 3. Donald could hold
+                        and
+                        score 8
+                        points, but chooses to roll again. Donald rolls a 2 and a 6, and could hold with a turn total of
+                        16
+                        points, but
+                        chooses to roll again. Donald rolls a 1, and must end his turn without scoring. The next player,
+                        Alexis,
+                        rolls the sequence (4,1)-(5,2)-(3,3), after which she chooses to hold, and adds her turn total
+                        of 18
+                        points to
+                        her score.
+                        <br>
+                        <em><a target="_blank" href="https://en.wikipedia.org/wiki/Pig_(dice_game)">- from
+                                Wikipedia.</a></em>
+                    </p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JAVASCRIPT LINK -->
+    <script src="main.js"></script>
+</body>
+
+</html>
