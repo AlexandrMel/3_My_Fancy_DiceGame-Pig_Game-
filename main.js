@@ -145,16 +145,18 @@ function forReload(event) {
 }
 
 ////////////// THE PROCESS OF DICE ROLLING INCLUDING ALL HELPING FUNCTIONS
-
+var test = true;
 ///// FIRST DICE ROLLING FUNCTION THAT CONTAINS ALL THE CONDITIONS IN WHICH THE DICES SHOULD ROLL
 function diceRolling() {
-  var winLimit = Number(winLimitInput.value) || 50;
-  rollDIce.blur();
-  if (
-    player1_g_score.innerHTML > winLimit ||
+  if(test){
+    test = false;
+    var winLimit = Number(winLimitInput.value) || 50;
+    rollDIce.blur();
+    if (
+      player1_g_score.innerHTML > winLimit ||
     player2_g_score.innerHTML > winLimit
-  ) {
-  } else {
+    ) {
+    } else {
     if (player_0_panel.classList.contains("active")) {
       rolling(player1_score, player1_g_score);
     } else {
@@ -170,6 +172,7 @@ function diceRolling() {
       rolling(player2_score, player2_g_score);
     }
   }
+}
 }
 
 ///// THE ACTUAL ROLLING DICE FUNCTION THAT IS ACTIVATED
@@ -228,6 +231,7 @@ function animate(num, x) {
     x.style.transform = "rotateX(90deg)";
     x.style["-webkit-transform"] = "rotateX(90deg)";
   }
+  setTimeout(function(){test = true;}, 1300)
 }
 
 ///// DICE ROLLING HELPING FUNCTION THAT RESETS THE SCORE WHEN SWITCHING FROM ONE PLAYER TO ANOTHER TOGGLING ACTIVE CLASS
